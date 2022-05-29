@@ -2,7 +2,7 @@
 
 This server site we use mongodb atlas and put our parts data here.
 
-Live site : https://zara-fashion-house.web.app/
+Live site : https://zara-car-manufacturer-house.web.app/
 
 ## Deployment
 
