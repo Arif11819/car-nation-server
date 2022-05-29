@@ -14,6 +14,8 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+
+
 async function run() {
     try {
         await client.connect();
@@ -34,6 +36,10 @@ async function run() {
             res.send(parts);
         });
 
+        app.get('/user', async (req, res) => {
+            const users = await userCollection.find().toArray();
+        })
+
         app.put('/user/:email', async (req, res) => {
             const email = req.params.email;
             const user = req.body;
@@ -44,7 +50,7 @@ async function run() {
             };
             const result = await userCollection.updateOne(filter, updateDoc, options);
             const token = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
-            res.send(result);
+            res.send({ result, token });
         })
     }
     finally {
