@@ -17,6 +17,7 @@ async function run() {
     try {
         await client.connect();
         const partsCollection = client.db('zara_car_manufacturer_house').collection('parts');
+        const userCollection = client.db('zara_car_manufacturer_house').collection('users');
 
         app.get('/parts', async (req, res) => {
             const query = {};
@@ -30,6 +31,18 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const parts = await partsCollection.findOne(query);
             res.send(parts);
+        });
+
+        app.put('/user/:email', async (req, res) => {
+            const email = req.params.email;
+            const user = req.body;
+            const filter = { email: email };
+            const options = { upsert: true };
+            const updateDoc = {
+                $set: user,
+            };
+            const result = await userCollection.updateOne(filter, updateDoc, options);
+            res.send(result);
         })
     }
     finally {
