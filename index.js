@@ -46,3 +46,10 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Zara Car App listening on port ${port}`)
 })
+
+// app.get('/items/:id', async (req, res) => {
+//     const id = req.params.id;
+//     const query = { _id: ObjectId(id) };
+//     const items = await itemsCollection.findOne(query);
+//     res.send(items);
+// });
