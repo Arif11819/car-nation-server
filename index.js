@@ -7,7 +7,9 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors({ origin: 'https://zara-car-manufacturer-house.web.app/' }));
+
+// middleware
+app.use(cors({ origin: `https://zara-car-manufacturer-house.web.app/` }));
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.liwrp.mongodb.net/?retryWrites=true&w=majority`;
