@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 
-// middleware
+// all middleware 
 app.use(cors({ origin: `https://zara-car-manufacturer-house.web.app/` }));
 app.use(express.json());
 
