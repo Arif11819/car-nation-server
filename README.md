@@ -10,9 +10,10 @@ To deploy this server in Heroku.
 
 ## Features OF CLIENT SIDE
 
-- Look a beautiful banner.
-- Previews all 3 parts in home page.
-- Previews all parts in manage parts page.
+- Showing the different types of Parts, Our Business Summary, Customer Review,
+  Dashboard, Order Summary, All Users, etc implement carefully.
+- Login, Registration, Email verification, Reset password system added.
+- Multi-authentication system.
 - Fullscreen mode.
 - Clicking on a specific route , you can go there and if you go on wrong route , show 404 error route.
 - If you not Register/Login.
