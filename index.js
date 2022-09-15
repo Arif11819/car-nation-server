@@ -60,6 +60,37 @@ async function run() {
 
         })
 
+        const reviewsCollection = client.db('zara_car_manufacturer_house').collection('reviews');
+
+        app.get('/reviews', async (req, res) => {
+            const query = {};
+            const cursor = reviewsCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send(reviews);
+
+            app.get('/reviews/:id', async (req, res) => {
+                const id = req.params.id;
+                const query = { _id: ObjectId(id) };
+                const reviews = await reviewsCollection.findOne(query);
+                res.send(reviews);
+            });
+
+        });
+
+        app.post('/reviews', async (req, res) => {
+            const reviews = req.body;
+            const result = await reviewsCollection.insertOne(reviews);
+            res.send(result);
+
+        });
+
+        app.delete('/reviews/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await reviewsCollection.deleteOne(query);
+            res.send(result);
+        });
+
         app.post('/booking', async (req, res) => {
             const booking = req.body;
             const result = await bookingsCollection.insertOne(booking);
